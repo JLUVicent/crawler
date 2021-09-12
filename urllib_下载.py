@@ -15,4 +15,4 @@ import urllib.request
 # 下载视频
 url_video = 'https://vd3.bdstatic.com/mda-mia2yrww4rrhfp93/fhd/cae_h264_nowatermark/1631326151977910571/mda-mia2yrww4rrhfp93.mp4?v_from_s=hkapp-haokan-nanjing&auth_key=1631461397-0-0-dd9ae5510d8ceb9f534534bb62f3a2dc&bcevod_channel=searchbox_feed&pd=1&pt=3&abtest=3000187_1'
 
-urllib.request.urlretrieve(url_video, 'quanhongchanj.mp4')
+urllib.request.urlretrieve(url_video, 'quanhongchan.mp4')
