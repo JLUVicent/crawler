@@ -62,9 +62,14 @@ NEWSPIDER_MODULE = 'scrapy_dangdang_040.spiders'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'scrapy_dangdang_040.pipelines.ScrapyDangdang040Pipeline': 300,
-# }
+ITEM_PIPELINES = {
+    # 管道可以有很多个，管道是有优先级的，优先级的范围是1-1000，值越小，优先级越高
+    #
+    'scrapy_dangdang_040.pipelines.ScrapyDangdang040Pipeline': 300,
+    # DangDangDownloadPipeline
+    'scrapy_dangdang_040.pipelines.DangDangDownloadPipeline': 301
+}
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
