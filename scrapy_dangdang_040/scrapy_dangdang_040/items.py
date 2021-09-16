@@ -11,4 +11,11 @@ class ScrapyDangdang040Item(scrapy.Item):
     # name = scrapy.Field()
     # 通俗的说就是要下载的数据都要什么
 
+    # 图片
+    src = scrapy.Field()
+    # 名称
+    name = scrapy.Field()
+    # 价格
+    price = scrapy.Field()
+
     pass

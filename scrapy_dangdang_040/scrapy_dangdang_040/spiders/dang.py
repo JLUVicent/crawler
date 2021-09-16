@@ -1,4 +1,5 @@
 import scrapy
+from scrapy_dangdang_040.items import ScrapyDangdang040Item
 
 
 class DangSpider(scrapy.Spider):
@@ -31,9 +32,8 @@ class DangSpider(scrapy.Spider):
             price = li.xpath(
                 './/span[@class="search_now_price"]/text()').extract_first()
 
-            print(src, name, price)
+            book = ScrapyDangdang040Item(src=src, name=name, price=price)
 
-        # price = response.xpath(
-        #     '//ul[@id="component_59"]/li//span[@class="search_now_price"]/text()')
-        # print(price.extract())
+            # 获取一个book就将book交给pipelines
+            yield book
         pass
