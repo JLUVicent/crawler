@@ -15,7 +15,7 @@ request = urllib.request.Request(url=url, headers=headers)
 
 # 这个代理不太好使，得买代理
 proxies = {
-    'http': '117.88.246.51:3000'
+    'http': '116.22.29.155:4245'
 }
 
 # ProxyHandler中是一个以字典形式存在的代理ip
@@ -29,5 +29,5 @@ content = response.read().decode('utf-8')
 # print(content)
 
 # 保存
-with open('daili.html', 'w', encoding='utf-8') as fp:
+with open('urllibdaili.html', 'w', encoding='utf-8') as fp:
     fp.write(content)
