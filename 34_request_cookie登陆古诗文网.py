@@ -18,9 +18,11 @@
 # 难点：（1）__VIEWSTATE， __VIEWSTATEGENERATOR  一般情况下看不到的数据都在页面的源码中
 #      观察到两个数据在页面的源码中，因此我们需要获取页面的源码然后进行解析就可以了
 #      （2）验证码
+import time
 import urllib.request
 from bs4 import BeautifulSoup
 import requests
+from chaojiying import Chaojiying_Client
 
 # 登陆页面的Url地址
 url = 'https://so.gushiwen.cn/user/login.aspx?from=http://so.gushiwen.cn/user/collect.aspx'
@@ -28,9 +30,12 @@ url = 'https://so.gushiwen.cn/user/login.aspx?from=http://so.gushiwen.cn/user/co
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36'
 }
+proxy = {
+    'http://': '27.44.214.169:4245'
 
+}
 # 获取页面的源码
-response = requests.get(url=url, headers=headers)
+response = requests.get(url=url, headers=headers, proxies=proxy)
 content = response.text
 
 # print(content)
@@ -67,9 +72,16 @@ content_code = response_code.content
 # wb模式是将二进制数据写入文件
 with open('code.jpg', 'wb')as fp:
     fp.write(content_code)
+time.sleep(3)
 
+chaojiying = Chaojiying_Client(
+    'action', 'action', '922587')  # 用户中心>>软件ID 生成一个替换 96001
+im = open('code.jpg', 'rb').read()  # 本地图片文件路径 来替换 a.jpg 有时WIN系统须要//
+# 1902 验证码类型  官方网站>>价格体系 3.4+版 print 后要加()
+code_num = chaojiying.PostPic(im, 1902).get('pic_str')
 # 获取验证码的图片之后下载到本地观察验证码在控制台输入验证码可以将值赋给code参数
-code_name = input('请输入你的验证码:')
+code_name = code_num
+# print(code_name)
 
 # 点击登录
 
@@ -81,7 +93,7 @@ data_post = {
     'from': 'http://so.gushiwen.cn/user/collect.aspx',
     'email': '17390955615@163.com',
     'pwd': '2bldhbfh',
-    'code': code_name,
+    'code': str(code_name),
     'denglu': '登录',
 }
 
