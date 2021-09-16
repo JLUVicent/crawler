@@ -72,7 +72,7 @@ content_code = response_code.content
 # wb模式是将二进制数据写入文件
 with open('code.jpg', 'wb')as fp:
     fp.write(content_code)
-time.sleep(3)
+# time.sleep(3)
 
 chaojiying = Chaojiying_Client(
     'action', 'action', '922587')  # 用户中心>>软件ID 生成一个替换 96001
